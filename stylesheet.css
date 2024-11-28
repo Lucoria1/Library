@@ -1,0 +1,10 @@
+#bookDisplay{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.bookCard{
+    border: 1px solid black;
+    padding: 5px;
+}
