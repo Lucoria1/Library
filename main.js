@@ -21,29 +21,33 @@ function addBookToLibrary (book) {
 
 function loopBooks () {
     myLibrary.forEach((book, i)=>{
+        if(document.querySelector(`#bookCont${i+1}`) !== null){
+            return
+        }
+
         const div = document.createElement("div");
-        div.setAttribute("id", `bookCont ${i+1}`);
+        div.setAttribute("id", `bookCont${i+1}`);
         div.setAttribute("class", "bookCard");
         document.getElementById("bookDisplay").appendChild(div);
 
         const title = document.createElement("h3");
         title.innerHTML = book.title;
-        document.getElementById(`bookCont ${i+1}`).appendChild(title);
+        document.getElementById(`bookCont${i+1}`).appendChild(title);
 
         const author = document.createElement("h4");
         author.innerHTML = `Author: ${book.author}`;
-        document.getElementById(`bookCont ${i+1}`).appendChild(author);
+        document.getElementById(`bookCont${i+1}`).appendChild(author);
 
         const pages = document.createElement("h4");
         pages.innerHTML = `Pages: ${book.pages}`;
-        document.getElementById(`bookCont ${i+1}`).appendChild(pages);
+        document.getElementById(`bookCont${i+1}`).appendChild(pages);
         
         const read = document.createElement("h4");
         if(book.read === true){
             read.innerHTML = `Read: has been read`} else {
                 read.innerHTML = `Read: has not been read`
             };        
-        document.getElementById(`bookCont ${i+1}`).appendChild(read);
+        document.getElementById(`bookCont${i+1}`).appendChild(read);
     })
 };
 
@@ -65,15 +69,26 @@ loopBooks();
 
 const addBookBtn = document.querySelector("#addBook");
 const dialog = document.querySelector("#dialog");
-const closeBtn = document.querySelector("#closeBtn");
+const confirmBtn = document.querySelector("#confirmBtn");
+const cancelBtn = document.querySelector("#cancelBtn")
 
 addBookBtn.addEventListener("click", () => {
     dialog.showModal();
 })
 
-closeBtn.addEventListener("click", () => {
-    dialog.close();
+cancelBtn.addEventListener("click", () => {
+    document.getElementById("form").reset();
 })
+
+confirmBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    let book = new Book (titleInput.value, authorInput.value, pagesInput.value, readInput.value);
+    addBookToLibrary(book);
+    loopBooks();
+    document.getElementById("form").reset();
+})
+
+
 
 
 
