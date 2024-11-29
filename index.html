@@ -16,6 +16,35 @@
     <div id="bookDisplay">
         
     </div>
+    
+    <dialog id="dialog">
+        <form>
+
+            <div id="form">
+                <div id="labels">
+                    <label for="titleInput">Title:</label>
+                    <label for="authorInput">Author:</label>
+                    <label for="pagesInput">Pages:</label>
+                    <label for="readInput">Read Status:</label>
+                </div>
+                <div id="inputs">
+                    <input type="text" id="titleInput">
+                    <input type="text" id="authorInput">
+                    <input type="number" id="pagesInput">
+                    <input type="text" id="readInput">
+                </div>
+            </div>
+
+            <div>
+                <button id="confirmBtn"
+                value="default">Confirm</button>
+                <button value="cancel"
+                formmethod="dialog">Cancel</button>
+            </div>
+
+        </form>
+
+    </dialog>
 
     <div id="buttons">
         <button id="addBook">Add Book</button>

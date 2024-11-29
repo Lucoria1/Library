@@ -47,6 +47,9 @@ function loopBooks () {
     })
 };
 
+
+//Manual entry
+
 let book1 = new Book ("Guess How Much I Love You", "Sam McBratney", 32, true)
 
 addBookToLibrary(book1);
@@ -55,12 +58,25 @@ let book2 = new Book ("The Very Hungry Caterpillar", "Eric Carle", 22, true)
 
 addBookToLibrary(book2);
 
-const addBookBtn = document.querySelector("#addBook")
-
 loopBooks();
 
-addBookBtn.addEventListener("click", (event) => {
-    console.log("hello")
+//Manual Entry
 
+
+const addBookBtn = document.querySelector("#addBook");
+const dialog = document.querySelector("#dialog");
+const closeBtn = document.querySelector("#closeBtn");
+
+addBookBtn.addEventListener("click", () => {
+    dialog.showModal();
 })
+
+closeBtn.addEventListener("click", () => {
+    dialog.close();
+})
+
+
+
+
+
 })

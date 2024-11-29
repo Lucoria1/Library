@@ -8,3 +8,18 @@
     border: 1px solid black;
     padding: 5px;
 }
+
+#form{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#form > div{
+    display: flex;
+    flex-direction: column;
+}
+
+#labels > label{
+    height: 21px;
+}
