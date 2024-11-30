@@ -48,6 +48,11 @@ function loopBooks () {
                 read.innerHTML = `Read: has not been read`
             };        
         document.getElementById(`bookCont${i+1}`).appendChild(read);
+
+        const rmBtn = document.createElement("button");
+        rmBtn.setAttribute("id", "rmBtn");
+        rmBtn.innerHTML = "Remove";
+        document.getElementById(`bookCont${i+1}`).appendChild(rmBtn);
     })
 };
 
@@ -70,7 +75,7 @@ loopBooks();
 const addBookBtn = document.querySelector("#addBook");
 const dialog = document.querySelector("#dialog");
 const confirmBtn = document.querySelector("#confirmBtn");
-const cancelBtn = document.querySelector("#cancelBtn")
+const cancelBtn = document.querySelector("#cancelBtn");
 
 addBookBtn.addEventListener("click", () => {
     dialog.showModal();
@@ -86,7 +91,20 @@ confirmBtn.addEventListener("click", (event) => {
     addBookToLibrary(book);
     loopBooks();
     document.getElementById("form").reset();
+    const rmBtn = document.querySelectorAll("#rmBtn");
+    rmBtn.forEach((button, i) => {
+        button.addEventListener("click", () => {
+            console.log(i);
+            myLibrary.splice(i, 1);
+            loopBooks();
+            console.log(myLibrary)
+    
+    
+        })
+    })
+   
 })
+
 
 
 
