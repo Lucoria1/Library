@@ -21,38 +21,41 @@ function addBookToLibrary (book) {
 
 function loopBooks () {
     myLibrary.forEach((book, i)=>{
-        if(document.querySelector(`#bookCont${i+1}`) !== null){
+        if(document.querySelector(`#bookCont${i}`) !== null){
             return
         }
 
         const div = document.createElement("div");
-        div.setAttribute("id", `bookCont${i+1}`);
-        div.setAttribute("class", "bookCard");
+        div.setAttribute("id", `bookCont${i}`);
+        div.setAttribute("class", `bookCard ${i}`);
         document.getElementById("bookDisplay").appendChild(div);
 
         const title = document.createElement("h3");
         title.innerHTML = book.title;
-        document.getElementById(`bookCont${i+1}`).appendChild(title);
+        document.getElementById(`bookCont${i}`).appendChild(title);
 
         const author = document.createElement("h4");
         author.innerHTML = `Author: ${book.author}`;
-        document.getElementById(`bookCont${i+1}`).appendChild(author);
+        document.getElementById(`bookCont${i}`).appendChild(author);
 
         const pages = document.createElement("h4");
         pages.innerHTML = `Pages: ${book.pages}`;
-        document.getElementById(`bookCont${i+1}`).appendChild(pages);
+        document.getElementById(`bookCont${i}`).appendChild(pages);
         
         const read = document.createElement("h4");
         if(book.read === true){
             read.innerHTML = `Read: has been read`} else {
                 read.innerHTML = `Read: has not been read`
             };        
-        document.getElementById(`bookCont${i+1}`).appendChild(read);
+        document.getElementById(`bookCont${i}`).appendChild(read);
 
         const rmBtn = document.createElement("button");
-        rmBtn.setAttribute("id", "rmBtn");
+        rmBtn.setAttribute("id", `rmBtn`);
         rmBtn.innerHTML = "Remove";
-        document.getElementById(`bookCont${i+1}`).appendChild(rmBtn);
+        rmBtn.setAttribute("class", i)
+        document.getElementById(`bookCont${i}`).appendChild(rmBtn);
+
+        addRmBtn();
     })
 };
 
@@ -91,40 +94,17 @@ confirmBtn.addEventListener("click", (event) => {
     addBookToLibrary(book);
     loopBooks();
     document.getElementById("form").reset();
-    const rmBtn = document.querySelectorAll("#rmBtn");
-    rmBtn.forEach((button, i) => {
+    addRmBtn();
+})
+
+function addRmBtn(){
+    const rmBtn = document.querySelectorAll("#rmBtn")
+    rmBtn.forEach((button)=>{
         button.addEventListener("click", () => {
-            myLibrary.splice(i, 1);
-            document.querySelector(`#bookCont${i+1}`).remove();
-            updateLoop();    
+            myLibrary.splice(button.className, 1)
+            document.querySelector(`#bookCont${button.className}`).remove();
         })
     })
-   
-})
-
-const rmBtn = document.querySelectorAll("#rmBtn");
-rmBtn.forEach((button, i) => {
-    button.addEventListener("click", () => {
-        myLibrary.splice(i, 1);
-        document.querySelector(`#bookCont${i+1}`).remove();
-        updateLoop();
-
-    })
-})
-
-function updateLoop(){
-    const bookConts = document.querySelectorAll(".bookCard");
-    bookConts.forEach((div, i) =>{
-        div.setAttribute("id", `bookCont${i+1}`)
-    })
 }
-
-
-
-
-
-
-
-
 
 })
