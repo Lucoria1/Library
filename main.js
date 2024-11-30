@@ -94,16 +94,31 @@ confirmBtn.addEventListener("click", (event) => {
     const rmBtn = document.querySelectorAll("#rmBtn");
     rmBtn.forEach((button, i) => {
         button.addEventListener("click", () => {
-            console.log(i);
             myLibrary.splice(i, 1);
-            loopBooks();
-            console.log(myLibrary)
-    
-    
+            document.querySelector(`#bookCont${i+1}`).remove();
+            updateLoop();    
         })
     })
    
 })
+
+const rmBtn = document.querySelectorAll("#rmBtn");
+rmBtn.forEach((button, i) => {
+    button.addEventListener("click", () => {
+        myLibrary.splice(i, 1);
+        document.querySelector(`#bookCont${i+1}`).remove();
+        updateLoop();
+
+    })
+})
+
+function updateLoop(){
+    const bookConts = document.querySelectorAll(".bookCard");
+    bookConts.forEach((div, i) =>{
+        div.setAttribute("id", `bookCont${i+1}`)
+    })
+}
+
 
 
 
