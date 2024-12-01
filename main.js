@@ -50,15 +50,21 @@ function loopBooks () {
         document.getElementById(`bookCont${i}`).appendChild(read);
 
         const rmBtn = document.createElement("button");
-        rmBtn.setAttribute("id", `rmBtn`);
+        rmBtn.setAttribute("id", i);
+        rmBtn.setAttribute("class", "rmBtn");
         rmBtn.innerHTML = "Remove";
-        rmBtn.setAttribute("class", i)
         document.getElementById(`bookCont${i}`).appendChild(rmBtn);
 
-        addRmBtn();
+        rmBtn.addEventListener("click", () => {
+            console.log(rmBtn.id);
+            console.log(`bookCont${rmBtn.id}`);
+            myLibrary.splice(rmBtn.id, 1);
+            document.getElementById(`bookCont${rmBtn.id}`).remove();
+            updateId();
+        })
+
     })
 };
-
 
 //Manual entry
 
@@ -94,17 +100,20 @@ confirmBtn.addEventListener("click", (event) => {
     addBookToLibrary(book);
     loopBooks();
     document.getElementById("form").reset();
-    addRmBtn();
 })
 
-function addRmBtn(){
-    const rmBtn = document.querySelectorAll("#rmBtn")
-    rmBtn.forEach((button)=>{
-        button.addEventListener("click", () => {
-            myLibrary.splice(button.className, 1)
-            document.querySelector(`#bookCont${button.className}`).remove();
-        })
+function updateId () {
+    const id = document.querySelectorAll(".rmBtn");
+    id.forEach((id, i) =>{
+       id.setAttribute("id", `${i}`) 
     })
+
+    const cont = document.querySelectorAll(".bookCard");
+    cont.forEach((cont, i) =>{
+       cont.setAttribute("id", `bookCont${i}`) 
+    })
+
 }
+
 
 })
