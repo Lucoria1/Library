@@ -1,4 +1,4 @@
-window.addEventListener("load", (event)=> {
+window.addEventListener("load", ()=> {
 
 const myLibrary = [];
 
@@ -8,10 +8,16 @@ function Book (title, author, pages, read){
     this.pages = pages;
     this.read = read;
     this.info = function() {
-        if(this.read === true){
+        if(this.read === "Read"){
             return `${this.title} by ${this.author}, ${this.pages} pages, has been read`
-        } else {return `${this.title} by ${this.author}, ${this.pages} pages, not read yet`}
+        } else if (this.read === "In Progress"){
+            return `${this.title} by ${this.author}, ${this.pages} pages, in process of reading`
+        }else{return `${this.title} by ${this.author}, ${this.pages} pages, not read yet`}
     }
+};
+
+Book.prototype.toggleRead = function () {
+    
 };
 
 function addBookToLibrary (book) {
@@ -43,8 +49,10 @@ function loopBooks () {
         document.getElementById(`bookCont${i}`).appendChild(pages);
         
         const read = document.createElement("h4");
-        if(book.read === true){
-            read.innerHTML = `Read: has been read`} else {
+        if(book.read === "Read"){
+            read.innerHTML = `Read: has been read`} else if(book.read === "In Progress"){
+                read.innerHTML = `Read: in progress`
+            }else{
                 read.innerHTML = `Read: has not been read`
             };        
         document.getElementById(`bookCont${i}`).appendChild(read);
@@ -63,23 +71,28 @@ function loopBooks () {
             updateId();
         })
 
+        const rdBtn = document.createElement("button");
+        rdBtn.setAttribute("id", i);
+        rdBtn.setAttribute("class", "rdBtn");
+        rdBtn.innerHTML = "Read Status";
+        document.getElementById(`bookCont${i}`).appendChild(rdBtn);
+
     })
 };
 
 //Manual entry
 
-let book1 = new Book ("Guess How Much I Love You", "Sam McBratney", 32, true)
+let book1 = new Book ("Guess How Much I Love You", "Sam McBratney", 32, "Read")
 
 addBookToLibrary(book1);
 
-let book2 = new Book ("The Very Hungry Caterpillar", "Eric Carle", 22, true)
+let book2 = new Book ("The Very Hungry Caterpillar", "Eric Carle", 22, "Read")
 
 addBookToLibrary(book2);
 
 loopBooks();
 
 //Manual Entry
-
 
 const addBookBtn = document.querySelector("#addBook");
 const dialog = document.querySelector("#dialog");
@@ -96,6 +109,7 @@ cancelBtn.addEventListener("click", () => {
 
 confirmBtn.addEventListener("click", (event) => {
     event.preventDefault();
+    let readInput = document.querySelector("input[name='radio']:checked")
     let book = new Book (titleInput.value, authorInput.value, pagesInput.value, readInput.value);
     addBookToLibrary(book);
     loopBooks();
