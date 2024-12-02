@@ -17,7 +17,13 @@ function Book (title, author, pages, read){
 };
 
 Book.prototype.toggleRead = function () {
-    
+    if(this.read === "Not Started"){
+        this.read = "In Progress"
+    }else if(this.read === "In Progress"){
+        this.read = "Read"
+    }else if(this.read === "Read"){
+        this.read = "Not Started"
+    }
 };
 
 function addBookToLibrary (book) {
@@ -64,8 +70,6 @@ function loopBooks () {
         document.getElementById(`bookCont${i}`).appendChild(rmBtn);
 
         rmBtn.addEventListener("click", () => {
-            console.log(rmBtn.id);
-            console.log(`bookCont${rmBtn.id}`);
             myLibrary.splice(rmBtn.id, 1);
             document.getElementById(`bookCont${rmBtn.id}`).remove();
             updateId();
@@ -76,6 +80,16 @@ function loopBooks () {
         rdBtn.setAttribute("class", "rdBtn");
         rdBtn.innerHTML = "Read Status";
         document.getElementById(`bookCont${i}`).appendChild(rdBtn);
+
+        rdBtn.addEventListener("click", () => {
+            book.toggleRead();
+            if(book.read === "Read"){
+                read.innerHTML = `Read: has been read`} else if(book.read === "In Progress"){
+                    read.innerHTML = `Read: in progress`
+                }else{
+                    read.innerHTML = `Read: has not been read`
+                } 
+            })
 
     })
 };
