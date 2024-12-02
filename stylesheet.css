@@ -23,3 +23,8 @@
 #labels > label{
     height: 21px;
 }
+
+.bookBtns{
+    display: flex;
+    justify-content: space-between;
+}

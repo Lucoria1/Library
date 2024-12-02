@@ -63,23 +63,16 @@ function loopBooks () {
             };        
         document.getElementById(`bookCont${i}`).appendChild(read);
 
-        const rmBtn = document.createElement("button");
-        rmBtn.setAttribute("id", i);
-        rmBtn.setAttribute("class", "rmBtn");
-        rmBtn.innerHTML = "Remove";
-        document.getElementById(`bookCont${i}`).appendChild(rmBtn);
-
-        rmBtn.addEventListener("click", () => {
-            myLibrary.splice(rmBtn.id, 1);
-            document.getElementById(`bookCont${rmBtn.id}`).remove();
-            updateId();
-        })
+        const div2 = document.createElement("div");
+        div2.setAttribute("id", `bookBtns${i}`);
+        div2.setAttribute("class", "bookBtns");
+        document.getElementById(`bookCont${i}`).appendChild(div2);
 
         const rdBtn = document.createElement("button");
         rdBtn.setAttribute("id", i);
         rdBtn.setAttribute("class", "rdBtn");
         rdBtn.innerHTML = "Read Status";
-        document.getElementById(`bookCont${i}`).appendChild(rdBtn);
+        document.getElementById(`bookBtns${i}`).appendChild(rdBtn);
 
         rdBtn.addEventListener("click", () => {
             book.toggleRead();
@@ -90,6 +83,20 @@ function loopBooks () {
                     read.innerHTML = `Read: has not been read`
                 } 
             })
+
+        const rmBtn = document.createElement("button");
+        rmBtn.setAttribute("id", i);
+        rmBtn.setAttribute("class", "rmBtn");
+        rmBtn.innerHTML = "Remove";
+        document.getElementById(`bookBtns${i}`).appendChild(rmBtn);
+
+        rmBtn.addEventListener("click", () => {
+            myLibrary.splice(rmBtn.id, 1);
+            document.getElementById(`bookCont${rmBtn.id}`).remove();
+            updateId();
+        })
+    
+    
 
     })
 };
