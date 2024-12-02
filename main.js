@@ -37,10 +37,20 @@ function loopBooks () {
             return
         }
 
+        const bookCover = document.createElement("div");
+        bookCover.setAttribute("id", `bookCover${i}`);
+        bookCover.setAttribute("class", `bookCover ${i}`);
+        document.getElementById("bookDisplay").appendChild(bookCover);
+
+        const bookMargin = document.createElement("div");
+        bookMargin.setAttribute("id", `bookMargin${i}`);
+        bookMargin.setAttribute("class", `bookMargin ${i}`);
+        document.getElementById(`bookCover${i}`).appendChild(bookMargin);
+
         const div = document.createElement("div");
         div.setAttribute("id", `bookCont${i}`);
         div.setAttribute("class", `bookCard ${i}`);
-        document.getElementById("bookDisplay").appendChild(div);
+        document.getElementById(`bookCover${i}`).appendChild(div);
 
         const title = document.createElement("h3");
         title.innerHTML = book.title;
@@ -56,7 +66,7 @@ function loopBooks () {
         
         const read = document.createElement("h4");
         if(book.read === "Read"){
-            read.innerHTML = `Read: has been read`} else if(book.read === "In Progress"){
+            read.innerHTML = `Read: read`} else if(book.read === "In Progress"){
                 read.innerHTML = `Read: in progress`
             }else{
                 read.innerHTML = `Read: has not been read`
@@ -77,7 +87,7 @@ function loopBooks () {
         rdBtn.addEventListener("click", () => {
             book.toggleRead();
             if(book.read === "Read"){
-                read.innerHTML = `Read: has been read`} else if(book.read === "In Progress"){
+                read.innerHTML = `Read: read`} else if(book.read === "In Progress"){
                     read.innerHTML = `Read: in progress`
                 }else{
                     read.innerHTML = `Read: has not been read`

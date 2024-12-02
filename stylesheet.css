@@ -1,3 +1,27 @@
+body{
+    background-image: url(Imgs/inaki-del-olmo-NIJuEQw0RKg-unsplash.jpg);
+    background-size: 100vh;
+}
+
+#title{
+    background-color: rgba(43, 134, 43, 0.5);
+    color: white;
+}
+
+.bookCover{
+    display: flex;
+    height: 300px;
+}
+
+.bookMargin{
+    width: 60px;
+    background-color: rgb(41, 110, 173);
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+}
+
+
 #bookDisplay{
     display: flex;
     flex-direction: row;
@@ -5,8 +29,17 @@
 }
 
 .bookCard{
-    border: 1px solid black;
-    padding: 5px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: bisque;
+    margin: 0;
+    padding: 0;
+}
+
+.bookCard > *{
+    margin: 10px;
 }
 
 #labelInput{
