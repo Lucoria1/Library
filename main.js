@@ -102,7 +102,7 @@ function loopBooks () {
 
         rmBtn.addEventListener("click", () => {
             myLibrary.splice(rmBtn.id, 1);
-            document.getElementById(`bookCont${rmBtn.id}`).remove();
+            document.getElementById(`bookCover${rmBtn.id}`).remove();
             updateId();
         })
     
@@ -153,9 +153,9 @@ function updateId () {
        id.setAttribute("id", `${i}`) 
     })
 
-    const cont = document.querySelectorAll(".bookCard");
+    const cont = document.querySelectorAll(".bookCover");
     cont.forEach((cont, i) =>{
-       cont.setAttribute("id", `bookCont${i}`) 
+       cont.setAttribute("id", `bookCover${i}`) 
     })
 
 }
