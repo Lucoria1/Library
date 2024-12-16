@@ -2,29 +2,57 @@ window.addEventListener("load", ()=> {
 
 const myLibrary = [];
 
-function Book (title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function() {
+class Book {
+    constructor (title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    get info() {
         if(this.read === "Read"){
             return `${this.title} by ${this.author}, ${this.pages} pages, has been read`
         } else if (this.read === "In Progress"){
             return `${this.title} by ${this.author}, ${this.pages} pages, in process of reading`
         }else{return `${this.title} by ${this.author}, ${this.pages} pages, not read yet`}
     }
-};
 
-Book.prototype.toggleRead = function () {
-    if(this.read === "Not Started"){
-        this.read = "In Progress"
-    }else if(this.read === "In Progress"){
-        this.read = "Read"
-    }else if(this.read === "Read"){
-        this.read = "Not Started"
-    }
-};
+    toggleRead() {
+        if(this.read === "Not Started"){
+            this.read = "In Progress"
+        }else if(this.read === "In Progress"){
+            this.read = "Read"
+        }else if(this.read === "Read"){
+            this.read = "Not Started"
+        }
+        }
+
+}
+
+// function Book (title, author, pages, read){
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+//     this.info = function() {
+//         if(this.read === "Read"){
+//             return `${this.title} by ${this.author}, ${this.pages} pages, has been read`
+//         } else if (this.read === "In Progress"){
+//             return `${this.title} by ${this.author}, ${this.pages} pages, in process of reading`
+//         }else{return `${this.title} by ${this.author}, ${this.pages} pages, not read yet`}
+//     }
+// };
+
+// Book.prototype.toggleRead = function () {
+//     if(this.read === "Not Started"){
+//         this.read = "In Progress"
+//     }else if(this.read === "In Progress"){
+//         this.read = "Read"
+//     }else if(this.read === "Read"){
+//         this.read = "Not Started"
+//     }
+// };
 
 function addBookToLibrary (book) {
     myLibrary.push(book)
@@ -160,5 +188,6 @@ function updateId () {
 
 }
 
+console.log(book1.info)
 
 })
